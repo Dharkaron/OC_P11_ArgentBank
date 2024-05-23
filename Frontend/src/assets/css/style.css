@@ -1,10 +1,16 @@
-/******************   Base    ********************************************************************/
+/* #00bc77 */
+/* #42b983 */
+/* #fff */
+/* #ccc */
+/* #222 */
+/* #2c3e50 */
+/* #12002b */
 html {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
+  color: rgb(44, 62, 80);
 }
 
 body {
@@ -23,9 +29,10 @@ body {
 }
 
 .bg-dark {
-  background-color: #12002b;
+  background-color: rgb(18, 0, 43);
 }
 
+/* code pour cacher les titres sur la page */
 .sr-only {
   border: 0 !important;
   clip: rect(1px, 1px, 1px, 1px) !important; /* 1 */
@@ -40,44 +47,52 @@ body {
   white-space: nowrap !important; /* 3 */
 }
 
-/*  */
-/************    Header    *******************************************************************************/
 .main-nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 5px 20px;
 }
-
-.main-nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-.main-nav a.router-link-exact-active {
-  color: #42b983;
-}
-
-.main-nav-item {
-  text-decoration: none;
-  margin-right: 0.5rem;
-}
-
-.main-nav-item:hover {
-  text-decoration: underline;
-}
-
 .main-nav-logo {
   display: flex;
   align-items: center;
 }
-
 .main-nav-logo-image {
   max-width: 100%;
   width: 200px;
 }
+.main-nav-menu {
+  display: flex;
+  gap: 20px;
+}
+.main-nav-menu-item {
+  font-weight: bold;
+  color: rgb(44, 62, 80);
+  text-decoration: none;
+  margin-right: 0.5rem;
+}
+.main-nav-menu-item:hover {
+  text-decoration: underline;
+}
+.main-nav-menu-icon {
+  padding-right: 6px;
+}
 
-/*  */
+.main-nav a.router-link-exact-active {
+  color: rgb(66, 185, 131);
+}
+
+.footer {
+  display: flex;
+  justify-content: center;
+  border-top: 2px solid rgb(204, 204, 204);
+  padding: 2rem 0 1.5rem;
+}
+.footer-text {
+  margin: 0;
+  padding: 0;
+}
+
 /*******************    Hero (main page)    ***************************************************************************/
 .hero {
   background-image: url("src/assets/img/bank-tree.webp");
@@ -87,28 +102,24 @@ body {
   height: 300px;
   position: relative;
 }
-
 .hero-content {
   position: relative;
   top: 2rem;
   width: 200px;
-  background: white;
+  background: rgb(255, 255, 255);
   padding: 2rem;
   text-align: left;
   margin: 0 auto;
 }
-
 .hero-content .subtitle {
   font-weight: bold;
   font-size: 1rem;
   margin: 0;
 }
-
 .hero-content .text {
   margin-bottom: 0;
   font-size: 0.9rem;
 }
-
 @media (min-width: 920px) {
   .hero {
     height: 400px;
@@ -128,110 +139,95 @@ body {
     font-size: 1.2rem;
   }
 }
+
 /*  */
 /******************    Features (main page)    ***********************************************************************/
 .features {
   display: flex;
   flex-direction: column;
 }
-
 @media (min-width: 920px) {
   .features {
     flex-direction: row;
   }
 }
-.feature-icon {
+.features .feature-icon {
   width: 100px;
-  border: 10px solid #00bc77;
+  border: 10px solid rgb(0, 188, 119);
   border-radius: 50%;
   padding: 1rem;
 }
-
-.feature-item {
+.features .feature-item {
   flex: 1;
   padding: 2.5rem;
 }
-
-.feature-item-title {
-  color: #222;
+.features .feature-item-title {
+  color: rgb(34, 34, 34);
   font-size: 1.25rem;
   font-weight: bold;
   margin-bottom: 0.5rem;
 }
 
-/*  */
-/*******************    Auth    *****************************************************************************************/
-.sign-in-button {
+.sign-in-content {
+  box-sizing: border-box;
+  background-color: rgb(255, 255, 255);
+  width: 300px;
+  margin: 0 auto;
+  margin-top: 3rem;
+  padding: 2rem;
+}
+.sign-in-content .sign-in-icon {
+  font-size: 5rem;
+}
+.sign-in-content .input-wrapper {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  margin-bottom: 1rem;
+}
+.sign-in-content .input-wrapper label {
+  font-weight: bold;
+}
+.sign-in-content .input-wrapper input {
+  padding: 5px;
+  font-size: 1.2rem;
+}
+.sign-in-content .input-remember {
+  display: flex;
+}
+.sign-in-content .input-remember label {
+  margin-left: 0.25rem;
+}
+.sign-in-content .sign-in-button {
   display: block;
   width: 100%;
   padding: 8px;
   font-size: 1.1rem;
   font-weight: bold;
   margin-top: 1rem;
-  border-color: #00bc77;
-  background-color: #00bc77;
-  color: #fff;
+  border-color: rgb(0, 188, 119);
+  background-color: rgb(0, 188, 119);
+  color: rgb(255, 255, 255);
 }
 
-.sign-in-content {
-  box-sizing: border-box;
-  background-color: white;
-  width: 300px;
-  margin: 0 auto;
-  margin-top: 3rem;
-  padding: 2rem;
+.header {
+  color: rgb(255, 255, 255);
+  margin-bottom: 2rem;
 }
-
-.sign-in-icon {
-  font-size: 5rem;
-}
-
-.input-remember {
-  display: flex;
-}
-
-.input-remember label {
-  margin-left: 0.25rem;
-}
-
-.input-wrapper {
-  display: flex;
-  flex-direction: column;
-  text-align: left;
-  margin-bottom: 1rem;
-}
-
-.input-wrapper label {
+.header .edit-button {
+  border-color: rgb(0, 188, 119);
+  background-color: rgb(0, 188, 119);
+  color: rgb(255, 255, 255);
   font-weight: bold;
+  padding: 10px;
 }
 
-.input-wrapper input {
-  padding: 5px;
-  font-size: 1.2rem;
-}
-
-/*  */
-/******************    Footer    ***************************************************************************************/
-.footer {
-  display: flex;
-  justify-content: center;
-  border-top: 2px solid #ccc;
-  padding: 2rem 0 1.5rem;
-}
-
-.footer-text {
-  margin: 0;
-  padding: 0;
-}
-
-/*  */
-/*****************    User    ****************************************************************************************/
 .account {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border: 1px solid black;
-  background-color: #fff;
+  border: 1px solid rgb(0, 0, 0);
+  background-color: rgb(255, 255, 255);
   width: 80%;
   margin: 0 auto;
   flex-direction: column;
@@ -240,65 +236,45 @@ body {
   text-align: left;
   margin-bottom: 2rem;
 }
-
-.account-amount {
-  margin: 0;
-  font-size: 2.5rem;
-  font-weight: bold;
+.account-content-wrapper {
+  width: 100%;
+  flex: 1;
 }
-
-.account-amount-description {
-  margin: 0;
-}
-
-.account-title {
+.account-content-wrapper .account-title {
   margin: 0;
   padding: 0;
   font-size: 1rem;
   font-weight: normal;
 }
-
-.account-content-wrapper {
-  width: 100%;
-  flex: 1;
-}
-
-.edit-button {
-  border-color: #00bc77;
-  background-color: #00bc77;
-  color: #fff;
+.account-content-wrapper .account-amount {
+  margin: 0;
+  font-size: 2.5rem;
   font-weight: bold;
-  padding: 10px;
 }
-
-.header {
-  color: #fff;
-  margin-bottom: 2rem;
+.account-content-wrapper .account-amount-description {
+  margin: 0;
 }
-
-.transaction-button {
+.account-content-wrapper .transaction-button {
   display: block;
   width: 100%;
   padding: 8px;
   font-size: 1.1rem;
   font-weight: bold;
   margin-top: 1rem;
-  border-color: #00bc77;
-  background-color: #00bc77;
-  color: #fff;
+  border-color: rgb(0, 188, 119);
+  background-color: rgb(0, 188, 119);
+  color: rgb(255, 255, 255);
 }
-
 @media (min-width: 720px) {
   .account {
     flex-direction: row;
   }
-  .account-content-wrapper.cta {
+  .account .account-content-wrapper.cta {
     flex: 0;
   }
-  .transaction-button {
+  .account .transaction-button {
     width: 200px;
   }
 }
-/*  */
 
 /*# sourceMappingURL=style.css.map */
