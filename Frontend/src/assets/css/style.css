@@ -209,6 +209,10 @@ body {
   background-color: rgb(0, 188, 119);
   color: rgb(255, 255, 255);
 }
+.sign-in-content .alert-message {
+  font-weight: bold;
+  margin-top: 15px;
+}
 
 .header {
   color: rgb(255, 255, 255);

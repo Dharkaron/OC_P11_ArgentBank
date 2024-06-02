@@ -1,13 +1,44 @@
-import { NavLink } from "react-router-dom";
+import { useRef, useState } from "react"
+import { useDispatch, useSelector } from "react-redux"
+import { useNavigate } from "react-router-dom"
+import { resetAlert, userLogin } from "../redux/actions/userConnection.action"
+
+
+
 
 export function Auth() {
+
+  const form = useRef()
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
+  const [rememberMe, setRememberMe] = useState(false);
+  const alertMessage = useSelector(state => state.login.alertMessage)
+
+
+  const handleForm = async (e) => {
+    e.preventDefault()
+
+    const loginData = {
+      "email": form.current[0].value,
+      "password": form.current[1].value
+    }
+    
+    dispatch(userLogin(loginData, navigate, rememberMe))
+      // Réinisialisation du formulaire au clic du bouton d'envoi
+    form.current.reset()
+      // Réinisialisation du message d'erreur après un délai de 2 secondes
+    setTimeout(() => {
+      dispatch(resetAlert())
+    }, 2000);
+  }
+
 
   return <>
     <main className="main bg-dark">
       <section className="sign-in-content">
           <i className="fa fa-user-circle sign-in-icon"></i>
           <h1>Sign In</h1>
-          <form>
+          <form ref={form} onSubmit={(e) => handleForm(e)}>
             <div className="input-wrapper">
               <label htmlFor="username">Username</label>
               <input type="text" id="username" />
@@ -17,15 +48,17 @@ export function Auth() {
               <input type="password" id="password" />
             </div>
             <div className="input-remember">
+              <input 
+                type="checkbox" 
+                id="remember-me"
+                checked={rememberMe}
+                onChange={(event) => setRememberMe(event.target.checked)}
+              />
               <label htmlFor="remember-me">Remember me</label>
-              <input type="checkbox" id="remember-me" />
             </div>
-            {/* <!-- PLACEHOLDER DUE TO STATIC SITE --> */}
-            <NavLink className="sign-in-button" to="/user">Sign In</NavLink>
-            {/* <!-- SHOULD BE THE BUTTON BELOW --> */}
-            {/* <!-- <button className="sign-in-button">Sign In</button> --> */}
-            
+            <button className="sign-in-button">Sign In</button>           
           </form>
+          {alertMessage && <div className="alert-message">{alertMessage}</div>}
         </section>
     </main>
   </>

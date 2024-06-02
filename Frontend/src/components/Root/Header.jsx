@@ -1,20 +1,34 @@
-import { useState } from "react";
-import {NavLink} from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { NavLink, useNavigate } from "react-router-dom";
+import { userLogout } from "../../redux/actions/userConnection.action";
+
 
 
 export function Header() {
-  
-  ////Recup du token stocké dans le cache
-  // const token = sessionStorage.getItem("token")
+ 
+  const dispatch = useDispatch()
+  const LoggedIn = useSelector(state => state.login.token)
+  const navigate = useNavigate()
 
-  /* Simulation de la récup d'un token, et de son utilisation pour l'affichage du menu de navigation */
-    const [token, setToken] = useState(false)
+    let tok = sessionStorage.getItem("token")
+      if (!tok) {
+        tok = localStorage.getItem("token")
+      }
 
-    const removeToken = () => {setToken(false)}
-    const addToken = () => {setToken(true)}
+    const displayToken = () => {   
+      console.log(tok);
+    }
+
+    const handleLogout = (e) => {
+      e.stopPropagation()
+      dispatch(userLogout(navigate))
+    }
 
   return <>
     <nav className="main-nav">
+
+      <button onClick={displayToken}>token test</button>
+
       <NavLink className="main-nav-logo" to="/">
         <img
           className="main-nav-logo-image"
@@ -23,28 +37,25 @@ export function Header() {
         />
         <h1 className="sr-only">Argent Bank</h1>
       </NavLink>
-      <div>
-        {token ? 
+      <div className="main-nav-menu">
+        {LoggedIn ? (
               <>
-                <NavLink className="main-nav-item" to="/user">
-                  <i className="fa fa-user-circle"></i>
+                <NavLink className="main-nav-menu-item" to="/user">
+                  <i className="fa fa-user-circle main-nav-menu-icon"></i>
                   Tony</NavLink>
-                <NavLink className="main-nav-item" to="/" onClick={removeToken}>
-                  <i className="fa fa-sign-out"></i>
+                <NavLink className="main-nav-menu-item" onClick={(e) => handleLogout(e)}>
+                  <i className="fa fa-sign-out main-nav-menu-icon"></i>
                   Sign Out
                 </NavLink>
-              </>
-              : 
-              <NavLink className="main-nav-item" to="/sign-in" onClick={addToken}>
-                <i className="fa fa-user-circle"></i>
-                Sign In</NavLink>
+              </> 
+            ) : (
+              <NavLink className="main-nav-menu-item" to="/sign-in">
+                <i className="fa fa-user-circle main-nav-menu-icon"></i>
+                Sign In</NavLink> )
         }
       </div>
     </nav>
   </>
 }
 
-
-/* Condition pour l'affichage: présence du token d'authentification */
 /* Affichage dynamique du nom d'utilisateur (récup sur l'api) */
-/* Bouton de déconnexion => suppression du token et renvoi vers la page d'accueil */

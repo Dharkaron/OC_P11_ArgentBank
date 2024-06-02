@@ -9,10 +9,10 @@ export function User() {
           <button className="edit-button">Edit Name</button>
           {/* Bouton de modif, renvoi sur modale/nouvelle page ? */}
           {/* => condition d'affichage pour une modale/ contenu sur la page */}
-        </div>
+      </div>
         <h2 className="sr-only">Accounts</h2>
 
-        {/* section account en tant que Composant */}
+        {/* section account en tant que Composant? */}
         {accountData.map((data) =>     
             <section className="account" key={data.accountType}>
               <div className="account-content-wrapper">
