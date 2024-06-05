@@ -1,33 +1,49 @@
-import { useDispatch, useSelector } from "react-redux";
-import { NavLink, useNavigate } from "react-router-dom";
-import { userLogout } from "../../redux/actions/userConnection.action";
+import { useDispatch, useSelector } from "react-redux"
+import { NavLink, useNavigate } from "react-router-dom"
+import { userLogout } from "../../redux/actions/userConnection.action"
+
 
 
 
 export function Header() {
  
   const dispatch = useDispatch()
-  const LoggedIn = useSelector(state => state.login.token)
   const navigate = useNavigate()
+  const isRemembered = useSelector(state => state.login.isCheck)
+  const userData = useSelector(state => state.user?.userData)
+  const persistToken = useSelector(state => state.login.token)
 
-    let tok = sessionStorage.getItem("token")
-      if (!tok) {
-        tok = localStorage.getItem("token")
+  // Logique pour l'affichage du menu de navigation, à partir du token de connexion,
+  // en fonction du state du bouton "rememberMe"
+  let LoggedIn
+  if(isRemembered) {
+    LoggedIn = window.localStorage.getItem("localToken")
+  }else {
+    LoggedIn = window.sessionStorage.getItem("sessionToken")
+  }
+
+    //// Affichage test pour les info de connexion (token, info api...)
+      let tok = window.sessionStorage.getItem("sessionToken")
+      let tokn = window.localStorage.getItem("localToken")
+
+      const displayToken = () => {   
+        console.log("window.sessionStorage: ", tok ? true : false)
+        console.log("window.localStorage: ", tokn ? true : false)
+        console.log("Redux-Persist token storage: ", persistToken ? true : false)
+        console.log("état du check du formulaire: ", isRemembered)
+        console.log("Récup infos user: ", userData)
       }
+    ////
 
-    const displayToken = () => {   
-      console.log(tok);
-    }
-
-    const handleLogout = (e) => {
-      e.stopPropagation()
+    // Déconnexion au clic du bouton "Sign Out"
+    const handleLogout = () => {
       dispatch(userLogout(navigate))
     }
 
   return <>
     <nav className="main-nav">
 
-      <button onClick={displayToken}>token test</button>
+      <button onClick={displayToken}>connexion test</button>
 
       <NavLink className="main-nav-logo" to="/">
         <img
@@ -42,8 +58,8 @@ export function Header() {
               <>
                 <NavLink className="main-nav-menu-item" to="/user">
                   <i className="fa fa-user-circle main-nav-menu-icon"></i>
-                  Tony</NavLink>
-                <NavLink className="main-nav-menu-item" onClick={(e) => handleLogout(e)}>
+                  {userData?.userName}</NavLink>
+                <NavLink className="main-nav-menu-item" onClick={() => handleLogout()}>
                   <i className="fa fa-sign-out main-nav-menu-icon"></i>
                   Sign Out
                 </NavLink>
@@ -58,4 +74,3 @@ export function Header() {
   </>
 }
 
-/* Affichage dynamique du nom d'utilisateur (récup sur l'api) */

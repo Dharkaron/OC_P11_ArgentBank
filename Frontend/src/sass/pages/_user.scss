@@ -1,10 +1,10 @@
 @use '../utils' as *;
 
-.header {
+.user-info {
   color: $white;
   margin-bottom: 2rem;
 
-  .edit-button {
+  .button {
     border-color: $light-green;
     background-color: $light-green;
     color: $white;

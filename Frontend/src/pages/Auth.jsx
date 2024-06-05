@@ -1,8 +1,7 @@
 import { useRef, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { useNavigate } from "react-router-dom"
-import { resetAlert, userLogin } from "../redux/actions/userConnection.action"
-
+import { rememberMe, resetAlert, userLogin } from "../redux/actions/userConnection.action"
 
 
 
@@ -11,10 +10,10 @@ export function Auth() {
   const form = useRef()
   const dispatch = useDispatch()
   const navigate = useNavigate()
-  const [rememberMe, setRememberMe] = useState(false);
+  const [isChecked, setIsChecked] = useState(false);
   const alertMessage = useSelector(state => state.login.alertMessage)
 
-
+  // Gestion du formulaire de connexion   
   const handleForm = async (e) => {
     e.preventDefault()
 
@@ -22,8 +21,11 @@ export function Auth() {
       "email": form.current[0].value,
       "password": form.current[1].value
     }
+
     
-    dispatch(userLogin(loginData, navigate, rememberMe))
+    dispatch(userLogin(loginData, navigate, isChecked))
+    // On stocke le state du bouton "RememberMe" (checked/unChecked) dans le state
+    dispatch(rememberMe(isChecked))
       // Réinisialisation du formulaire au clic du bouton d'envoi
     form.current.reset()
       // Réinisialisation du message d'erreur après un délai de 2 secondes
@@ -51,8 +53,8 @@ export function Auth() {
               <input 
                 type="checkbox" 
                 id="remember-me"
-                checked={rememberMe}
-                onChange={(event) => setRememberMe(event.target.checked)}
+                checked={isChecked}
+                onChange={(event) => setIsChecked(event.target.checked)}
               />
               <label htmlFor="remember-me">Remember me</label>
             </div>

@@ -1,6 +1,9 @@
+import { userProfile } from "./userProfile.action"
+
 export const LOGIN_SUCCESS = "LOGIN_SUCCESS"
 export const LOGIN_ALERT = "LOGIN_ALERT"
 export const RESET_ALERT = "RESET_ALERT"
+export const REMEMBER_ME = "REMEMBER_ME"
 export const LOGOUT = "LOGOUT"
 
 
@@ -16,7 +19,9 @@ export const resetAlert = () => {
   return { type: "RESET_ALERT" }
 }
 
-
+export const rememberMe = (isCheck) => {
+  return { type: "REMEMBER_ME", payload: isCheck }
+}
 
 
 
@@ -32,30 +37,31 @@ export const userLogin = (loginData, navigate, rememberMe) => {
 
           if (response.status === 200){
             const token = response.body.token
-            if (rememberMe) {            
-            localStorage.setItem("token", token)
+            if (rememberMe) {                  
+            window.localStorage.setItem("localToken", token)
           } else {
-            sessionStorage.setItem("token", token)
-          }            
-            dispatch(loginAlert(`connexion réussie!`))
+            window.sessionStorage.setItem("sessionToken", token)
+          }           
+            dispatch(loginAlert(response.message))
               // test contact api (code 200 attendu)
             console.log(response)
-            console.log(token);
+            console.log(token)
               // renvoi vers la page de l'utilisateur
+              // Dispatch "loginSuccess" pour stocker le token dans le state de redux
+              // Dispatch de "getUserProfile" pour récupérer les données d'utilisateur, et les stocker dans le state
              setTimeout(() => {
               dispatch(loginSuccess(token))
+              dispatch(userProfile(token))
               navigate("/user")
             }, 2000);
             
           } else{
-            dispatch(loginAlert('email ou mot de passe invalide'))
-            //localStorage.removeItem("token")
+            dispatch(loginAlert(response.message))
             }
     } 
     catch (error) {
       dispatch(loginAlert(`erreur de connexion avec l'api`))
-      console.log(error);
-      //localStorage.removeItem("token")
+      console.log(error)
       }
   } 
 }
@@ -63,8 +69,8 @@ export const userLogin = (loginData, navigate, rememberMe) => {
 
 //Gestion de la déconnexion de l'utilisateur
 export const userLogout = (navigate) => {
-  localStorage.removeItem("token")
-  sessionStorage.removeItem("token")
+  localStorage.removeItem("localToken")
+  sessionStorage.removeItem("sessionToken")
   navigate("/")
   return { type: "LOGOUT" }  
 }

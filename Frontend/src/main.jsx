@@ -12,9 +12,11 @@ import { PersistGate } from 'redux-persist/integration/react'
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <Provider store={store}>
-      <PersistGate loading={null} persistor={persiststore}>
+      <PersistGate loading={<div>Loading...</div>} persistor={persiststore}>
         <App/>
       </PersistGate>
     </Provider>
   </React.StrictMode>,
 )
+
+// ajout d'un composant "loading" ?

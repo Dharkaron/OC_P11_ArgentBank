@@ -1,8 +1,9 @@
-import { LOGIN_ALERT, LOGIN_SUCCESS, LOGOUT, RESET_ALERT } from "../actions/userConnection.action"
+import { LOGIN_ALERT, LOGIN_SUCCESS, LOGOUT, REMEMBER_ME, RESET_ALERT } from "../actions/userConnection.action"
 
 const initialState = { 
     token:null,
-    alertMessage:null
+    alertMessage:null,
+    isCheck:false
 }
 
 export default function connectionReducer(state = initialState, action) {
@@ -13,8 +14,10 @@ export default function connectionReducer(state = initialState, action) {
       return {...state, alertMessage: action.payload}
     case RESET_ALERT:
       return {...state, alertMessage: null}
+    case REMEMBER_ME:
+      return {...state, isCheck: action.payload}
     case LOGOUT:
-      return { ...state, token: null }
+      return { ...initialState }
     default:
       return state
   }
