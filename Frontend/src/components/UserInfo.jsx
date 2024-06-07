@@ -37,7 +37,6 @@ export function UserInfo() {
   return <>
       <div className="user-info">
           
-
           { !editMode ?
             <>
             <h1>Welcome back<br />{`${userData?.firstName} ${userData?.lastName}`}</h1>
@@ -46,7 +45,7 @@ export function UserInfo() {
             :
             <>
             <h1>Edit User Info</h1>
-            <form >
+            <form className="user-edit">
               <div className="input-wrapper">
                   <label htmlFor="username">User Name: </label>
                   <input 
@@ -60,6 +59,7 @@ export function UserInfo() {
               <div className="input-wrapper">
                   <label>First Name: </label>
                   <input 
+                    className="disabled"
                     type="text" 
                     id="userfirstname" 
                     value={userData?.firstName} 
@@ -68,15 +68,18 @@ export function UserInfo() {
               </div>
               <div className="input-wrapper">
                   <label>Last Name: </label>
-                  <input 
+                  <input
+                    className="disabled" 
                     type="text" 
                     id="userlastname"  
                     value={userData?.lastName} 
                     disabled
                   />
               </div>
-                <button className="button save-username-change" onClick={handleSave}>Save</button>       
-                <button className="button cancel-username-change" onClick={handleCancel}>Cancel</button>               
+                <div className="btn-wrapper">
+                  <button className="button user-edit-btn" onClick={handleSave}>Save</button>       
+                  <button className="button user-edit-btn" onClick={handleCancel}>Cancel</button>
+                </div>               
             </form>
             </>
           }

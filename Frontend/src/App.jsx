@@ -4,6 +4,7 @@ import { Root } from './components/Root/Root'
 import { Auth } from './pages/Auth'
 import { User } from './pages/User'
 import { ErrorPage } from './pages/ErrorPage'
+import ProtectedRoute from './components/ProtectedRoute'
 
 
 const router = createBrowserRouter([
@@ -21,7 +22,11 @@ const router = createBrowserRouter([
       },
       {
         path:'/user',
-        element: <User/>
+        element: (
+            <ProtectedRoute>
+              <User/>
+            </ProtectedRoute>
+          )
       },
       {
         path:'/*',
@@ -32,31 +37,6 @@ const router = createBrowserRouter([
 ])
 
 
-
-
 export default function App() {
-
-    return <RouterProvider router={router} />
+    return <RouterProvider router={router}/>
 }
-
-
-
-{/* 
-
-return (
-  <BrowserRouter>
-
-      <Header/>
-
-      <Routes>
-
-          <Route ... />
-          <Route ... />
-
-      </Routes>
-
-      <Footer/>
-
-  </BrowserRouter> 
-)
-*/}

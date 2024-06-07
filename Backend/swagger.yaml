@@ -94,13 +94,80 @@ paths:
         - application/json
       responses:
         '200':
-          description: User profile retrieved successully
+          description: User profile retrieved successfully
           schema:
             $ref: '#/definitions/ApiResponse'
         '400':
           description: Invalid Fields
         '500':
+          description: Internal Server Error          
+#New Paths      
+  /user/accounts:
+    get:
+      security:
+        - Bearer: []
+      tags:
+        - User Module
+      summary: User Accounts
+      description: API for returning a list of accounts
+      responses:
+        '200':
+          description: User accounts retrieved successfully
+          schema:
+            $ref: '#/definitions/UserAccounts'
+        '400':
+          description: User not found
+        '500':
           description: Internal Server Error
+
+  /accounts/{accountId}/transactions:
+    get:
+      security:
+        - Bearer: []
+      tags:
+        - Account Module
+      description: API for returning a list of transactions
+      responses:
+        '200':
+          description: Transactions retrieved successfully
+          schema:
+            $ref: '#/definitions/AccountTransactions'
+        '400':
+          description: Account not found
+        '500':
+          description: Internal Server Error
+
+  /transactions/{transactionId}:
+    put:
+      security:
+        - Bearer: []
+      tags:
+        - Account Module
+      description: API for updating a transaction
+      parameters:
+        - in: path
+          name: transactionID
+          type: string
+          description: Transaction Id
+          required: true
+        - in: body
+          name: body
+          description: update transaction information
+          required: true  
+          schema:
+            $ref: '#/definitions/TransactionEdition'
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Transaction retrieved successfully
+          schema:
+            $ref: '#/definitions/TransactionResponse'
+        '400':
+          description: Account not found
+        '500':
+          description: Internal Server Error
+#
 securityDefinitions:
   Bearer:
     type: apiKey
@@ -156,3 +223,91 @@ definitions:
     properties:
       userName:
         type: string
+
+# New security definitions
+  UserAccounts:
+    description: List of current user accounts
+    type: array
+    items:
+      type: object
+      properties:
+        id:
+          type: string
+          description: account number
+        name:
+          type: string
+          description: account name
+        balance:
+          type: string
+          description: account balance
+
+  AccountTransactions:
+    description: List of current account transactions
+    type: array
+    items:
+      type: object
+      properties:
+        id:
+          type: string
+          description: transaction ID       
+        date:
+          type: string
+          description: transaction date
+        description:
+          type: string
+          description: transaction description
+        amount:
+          type: string
+          description: transaction amount
+        balance:
+          type: string
+          description: account balance after transaction
+        type:
+          type: string
+          description: transaction type 
+        category:
+          type: string
+          description: transaction category
+        note:
+          type: string
+          description: user annotation 
+
+  TransactionEdition:
+    description: Edition of Transaction properties
+    type: object
+    properties:
+      category:
+        type: string
+        description: transaction category
+      note:
+        type: string
+        description: user annotation
+
+  TransactionResponse:
+    description: Response from the Api
+    type: object
+    properties:
+      id:
+        type: string
+        description: transaction ID       
+      date:
+        type: string
+        description: transaction date
+      description:
+        type: string
+        description: transaction description
+      amount:
+        type: string
+        description: transaction amount
+      balance:
+        type: string
+        description: account balance after transaction
+      type:
+        type: string
+        description: transaction type 
+      category:
+        type: string
+        description: transaction category
+      note:
+        type: string
+        description: user annotation 

@@ -281,4 +281,47 @@ body {
   }
 }
 
+.user-edit {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  gap: 10px;
+}
+.user-edit .disabled {
+  background: #bebebe;
+  color: #4b4b4b;
+}
+.user-edit .btn-wrapper {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  gap: 20px;
+}
+.user-edit .btn-wrapper .user-edit-btn {
+  padding: 10px 20px;
+}
+
+.error-page {
+  padding-bottom: 80px;
+}
+.error-page .error-title {
+  font-size: 80px;
+  padding: 60px 40px 0 40px;
+  color: inherit;
+}
+.error-page .error-subtitle {
+  font-size: 20px;
+  font-style: oblique;
+  padding-bottom: 60px;
+}
+.error-page .error-link {
+  font-size: 20px;
+  text-decoration: none;
+  color: inherit;
+}
+.error-page .error-link:hover {
+  text-decoration: underline;
+  font-weight: 600;
+}
+
 /*# sourceMappingURL=style.css.map */

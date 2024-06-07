@@ -71,3 +71,27 @@
     }
   }
 }
+
+// Formulaire de modification de "userName"
+.user-edit {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  gap: 10px;
+
+  .disabled {
+    background: #bebebe;
+    color: #4b4b4b;
+  }
+
+  .btn-wrapper {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    gap:20px;
+
+    .user-edit-btn {
+      padding: 10px 20px;
+    }
+  }
+}
