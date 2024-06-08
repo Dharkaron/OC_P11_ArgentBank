@@ -1,7 +1,7 @@
 import { useRef, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { useNavigate } from "react-router-dom"
-import { rememberMe, resetAlert, userLogin } from "../redux/actions/userConnection.action"
+import { loginAlert, resetAlert, userLogin } from "../redux/actions/userConnection.action"
 
 
 
@@ -16,19 +16,21 @@ export function Auth() {
   // Gestion du formulaire de connexion   
   const handleForm = async (e) => {
     e.preventDefault()
-
+  
     const loginData = {
       "email": form.current[0].value,
       "password": form.current[1].value
     }
-
     
-    dispatch(userLogin(loginData, navigate, isChecked))
-    // On stocke le state du bouton "RememberMe" (checked/unChecked) dans le state
-    dispatch(rememberMe(isChecked))
-      // Réinisialisation du formulaire au clic du bouton d'envoi
+    if(loginData.email.trim() === "" || loginData.password.trim() === ""){
+      dispatch(loginAlert(`Error: please fill out every field!`))
+    } else {
+      dispatch(userLogin(loginData, navigate, isChecked))
+    }
+    
+      // Réinitialisation du formulaire au clic du bouton d'envoi
     form.current.reset()
-      // Réinisialisation du message d'erreur après un délai de 2 secondes
+      // Réinitialisation du message d'erreur après un délai
     setTimeout(() => {
       dispatch(resetAlert())
     }, 2000);

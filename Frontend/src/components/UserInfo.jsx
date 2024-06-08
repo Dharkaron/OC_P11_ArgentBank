@@ -15,10 +15,11 @@ export function UserInfo() {
   // Gestion du bouton d'édition
   const handleEdit = () => {
     setEditMode(true)
-    setNewName(userData.userName)
+    // Affichage du "username" à la première ouverture du formulaire
+    setNewName(userData?.userName)
   }
 
-  // Fermeture de la modale de modification, et reset du "userName"
+  // Fermeture du formulaire de modification, et reset du "userName"
   const handleCancel = (e) => {
     e.preventDefault()
     setEditMode(false)
@@ -29,7 +30,7 @@ export function UserInfo() {
   const handleSave = (e) => {
     e.preventDefault()
     dispatch(changeUserName(newName, Token))
-    // Fermeture de la modale
+    // Fermeture du formulaire une fois le changement effectué
     setEditMode(false)
   }
 
@@ -53,7 +54,6 @@ export function UserInfo() {
                     id="username" 
                     value={newName} 
                     onChange={(e) => setNewName(e.target.value)}
-                    placeholder=""
                   />
               </div>
               <div className="input-wrapper">

@@ -14,7 +14,6 @@ export function UserAccount() {
           </div>
           <div className="account-content-wrapper cta">
             <button className="transaction-button">View transactions</button>
-            {/* bouton pour afficher les détails des transactions */}
           </div>
         </section>          
       )}

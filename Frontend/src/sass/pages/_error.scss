@@ -1,14 +1,18 @@
+@use '../utils' as *;
+
 .error-page{
  padding-bottom: 80px;
 
   .error-title{
     font-size: 80px;
     padding: 60px 40px 0 40px;
-    color: inherit;
+    color: $dark-green;
   }
   .error-subtitle{
     font-size: 20px;
     font-style: oblique;
+    font-weight: 600;
+    color: $green;
     padding-bottom: 60px;
   }
   .error-link{

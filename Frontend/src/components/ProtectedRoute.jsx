@@ -1,11 +1,20 @@
 import { useSelector } from "react-redux"
 import { PropTypes } from "prop-types"
-import { Navigate } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
+import { useEffect } from "react"
 
 
 export default function ProtectedRoute({children}) {
   const isConnected = useSelector(state => state.login.token)
-  return isConnected ? children : <Navigate to={"/sign-in"}/>
+  const navigate = useNavigate()
+
+  useEffect(() => {
+    if(isConnected === null){
+      navigate('/sign-in')
+    }
+  }, [navigate, isConnected])
+
+  return children 
 }
 
 

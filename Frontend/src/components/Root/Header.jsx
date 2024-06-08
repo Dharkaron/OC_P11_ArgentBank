@@ -9,18 +9,17 @@ export function Header() {
  
   const dispatch = useDispatch()
   const navigate = useNavigate()
-  //const isRemembered = useSelector(state => state.login.isCheck)
+  // On récupère les informations de l'utilisateur stockés dans le Store
   const userData = useSelector(state => state.user?.userData)
 
   // Logique pour l'affichage du menu de navigation, à partir du token de connexion,
-  // en fonction du state du bouton "rememberMe"
   let LoggedIn = window.localStorage.getItem("localToken")
-  if(!LoggedIn) {
-    LoggedIn = window.sessionStorage.getItem("sessionToken")
-  }
+    if(LoggedIn === null) {
+      LoggedIn = window.sessionStorage.getItem("sessionToken")
+    }
 
 
-    // Déconnexion au clic du bouton "Sign Out"
+  // Déconnexion au clic du bouton "Sign Out"
     const handleLogout = () => {
       dispatch(userLogout(navigate))
     }

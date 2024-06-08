@@ -1,6 +1,8 @@
 /* #00bc77 */
+/* #244B30 */
 /* #42b983 */
 /* #fff */
+/* #000000 */
 /* #ccc */
 /* #222 */
 /* #2c3e50 */
@@ -95,7 +97,7 @@ body {
 
 /*******************    Hero (main page)    ***************************************************************************/
 .hero {
-  background-image: url("src/assets/img/bank-tree.webp");
+  background-image: url("./../src/assets/img/bank-tree.webp");
   background-position: 0 -50px;
   background-size: cover;
   background-repeat: no-repeat;
@@ -307,11 +309,13 @@ body {
 .error-page .error-title {
   font-size: 80px;
   padding: 60px 40px 0 40px;
-  color: inherit;
+  color: rgb(36, 75, 48);
 }
 .error-page .error-subtitle {
   font-size: 20px;
   font-style: oblique;
+  font-weight: 600;
+  color: rgb(66, 185, 131);
   padding-bottom: 60px;
 }
 .error-page .error-link {
