@@ -1,72 +1,50 @@
-# Argent Bank API
+# OpenClassroom - Projet 11 _ Argent Bank API
 
-This codebase contains the code needed to run the backend for Argent Bank.
+## Implémentez le front-end d'une application bancaire avec React
 
-## Getting Started
+<hr>
 
-### Prerequisites
+### Prérequis
 
-Argent Bank uses the following tech stack:
+L'application à besoin des technologies suivantes pour fonctionner
 
-- [Node.js v12](https://nodejs.org/en/)
+- [Node.js](https://nodejs.org/en/)
 - [MongoDB Community Server](https://www.mongodb.com/try/download/community)
 
-Please make sure you have the right versions and download both packages. You can verify this by using the following commands in your terminal:
+Vous pouvez vérifier si les paquets sont installés, et leurs versions, en utilisant les commandes suivantes dans votre terminal:
 
 ```bash
-# Check Node.js version
+# Node.js version
 node --version
 
-# Check Mongo version
+# Mongo version
+mongod --version
+## commande alternative
 mongo --version
 ```
+<hr>
 
-### Instructions
+### Instructions pour lancer l'application:
 
-1. Fork this repo
-1. Clone the repo onto your computer
-1. Open a terminal window in the cloned project
-1. Run the following commands:
-
+1. Ouvrir 3 instances de terminal, pour le dossier "Frontend", pour le dossier "Backend", et pour lancer le service Mongodb
+2. Activer le service Mongodb (diffère selon les systèmes => sous linux, commande <i><b>`sudo systemctl start mongod.service`</b></i> )
+3. Lancer le serveur depuis le Backend
 ```bash
-# Install dependencies
-npm install
-
-# Start local dev server
 npm run dev:server
-
-# Populate database with two users
-npm run populate-db
 ```
+4. Lancer l'application depuis le Frontend
+```bash
+npm run dev
+```
+<hr>
 
-Your server should now be running at http://locahost:3001 and you will now have two users in your MongoDB database!
-
-## Populated Database Data
-
-Once you run the `populate-db` script, you should have two users in your database:
-
+### Identifiant de connection (Email & Password):
+```bash
 ### Tony Stark
-
-- First Name: `Tony`
-- Last Name: `Stark`
 - Email: `tony@stark.com`
 - Password: `password123`
 
 ### Steve Rogers
-
-- First Name: `Steve`,
-- Last Name: `Rogers`,
 - Email: `steve@rogers.com`,
 - Password: `password456`
-
-## API Documentation
-
-To learn more about how the API works, once you have started your local environment, you can visit: http://localhost:3001/api-docs
-
-## Design Assets
-
-Static HTML and CSS has been created for most of the site and is located in: `/designs`.
-
-For some of the dynamic features, like toggling user editing, there is a mock-up for it in `/designs/wireframes/edit-user-name.png`.
-
-And for the API model that you will be proposing for transactitons, the wireframe can be found in `/designs/wireframes/transactions.png`.
+```
