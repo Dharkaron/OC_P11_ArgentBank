@@ -3,14 +3,6 @@
 .user-info {
   color: $white;
   margin-bottom: 2rem;
-
-  .button {
-    border-color: $light-green;
-    background-color: $light-green;
-    color: $white;
-    font-weight: bold;
-    padding: 10px;
-  }
 }
 
 .account {
@@ -50,12 +42,7 @@
       display: block;
       width: 100%;
       padding: 8px;
-      font-size: 1.1rem;
-      font-weight: bold;
       margin-top: 1rem;
-      border-color: $light-green;
-      background-color: $light-green;
-      color: $white;
     }
   }
 
@@ -90,7 +77,7 @@
     justify-content: center;
     gap:20px;
 
-    .user-edit-btn {
+    .user-edit-button {
       padding: 10px 20px;
     }
   }

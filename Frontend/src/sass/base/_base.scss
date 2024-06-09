@@ -19,13 +19,15 @@ body {
   min-height: 100vh;
 }
 
+/* Classes pour la balise <main> */
 .main {
   flex: 1;
 }
-
 .bg-dark {
   background-color: $purple;
 }
+/* */
+
 
 /* code pour cacher les titres sur la page */
 .sr-only {

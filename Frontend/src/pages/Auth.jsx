@@ -44,8 +44,8 @@ export function Auth() {
           <h1>Sign In</h1>
           <form ref={form} onSubmit={(e) => handleForm(e)}>
             <div className="input-wrapper">
-              <label htmlFor="username">Username</label>
-              <input type="text" id="username" />
+              <label htmlFor="usermail">Email</label>
+              <input type="text" id="usermail" />
             </div>
             <div className="input-wrapper">
               <label htmlFor="password">Password</label>
@@ -60,7 +60,7 @@ export function Auth() {
               />
               <label htmlFor="remember-me">Remember me</label>
             </div>
-            <button className="sign-in-button">Sign In</button>           
+            <button className="button sign-in-button">Sign In</button>           
           </form>
           {alertMessage && <div className="alert-message">{alertMessage}</div>}
         </section>

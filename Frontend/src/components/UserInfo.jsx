@@ -77,8 +77,8 @@ export function UserInfo() {
                   />
               </div>
                 <div className="btn-wrapper">
-                  <button className="button user-edit-btn" onClick={handleSave}>Save</button>       
-                  <button className="button user-edit-btn" onClick={handleCancel}>Cancel</button>
+                  <button className="button user-edit-button" onClick={handleSave}>Save</button>       
+                  <button className="button user-edit-button" onClick={handleCancel}>Cancel</button>
                 </div>               
             </form>
             </>
