@@ -107,9 +107,9 @@ paths:
       security:
         - Bearer: []
       tags:
-        - User Module
+        - Account Module
       summary: User Accounts
-      description: API for returning a list of accounts
+      description: API for returning a list of accounts for the current user
       responses:
         '200':
           description: User accounts retrieved successfully
@@ -126,7 +126,8 @@ paths:
         - Bearer: []
       tags:
         - Account Module
-      description: API for returning a list of transactions
+      summary: Transactions for current account
+      description: API for returning a list of transactions for a specific account id
       responses:
         '200':
           description: Transactions retrieved successfully
@@ -143,7 +144,8 @@ paths:
         - Bearer: []
       tags:
         - Account Module
-      description: API for updating a transaction
+      summary: Edit Transactions details
+      description: API for updating a transaction details
       parameters:
         - in: path
           name: transactionID
